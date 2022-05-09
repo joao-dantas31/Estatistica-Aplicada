@@ -1,30 +1,53 @@
 ---
 title: "Lista 1"
-author: "Jp"
-date: '2022-05-09'
+author: 
+  - Eniedson Fabiano Pereira da Silva Junior - 119110512  
+  - João Paulo Alves Dantas - 119210258  
+  - Rodrigo Farias Oliveira - 118110711
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# Respostas
+
+1. Quando se tem uma grande quantidade de dados com valores distintos para se exibir em uma tabela pode ser que o resultado gerado a não seja tão atrativo, como visto na tabela a seguir, que detalha a quantidade de horas extras dormidas por 20 pacientes que consumiram dois tipos de drogas soniferas: 
+
+``` {r, echo = FALSE}
+table (sleep$extra, sleep$group)
 ```
 
-## R Markdown
+Porem podemos agrupar os resultados em intervalos de valores arbitrarios, tornando uma visualização bem mais atrativa: 
+```{r tabela, echo = FALSE}
+sono <- cut(sleep$extra, breaks = c(-2,0,2,5), 
+labels = c("-2..0","0..2","2..5"))
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+table (sono, sleep$group)
 ```
 
-## Including Plots
+2. salve
 
-You can also embed plots, for example:
+``` {r}
+k <- 1:10
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+probability <- pbinom(q = k,
+       size = 10,
+       prob = .5)
+
+# plot the outcomes against their probabilities
+plot(x = k, 
+     y = probability,
+     main = "Probability Distribution Function") 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+3. As variaveis aleatorias podem ser divididas em dois grupos principais, qualitativas e quantitativas, dentro desses podemos ainda dividir cada em em outros dois, temos as qualitativas nominais e ordinais, e temos as quantitativas discretas e continuas.
+
+    3.1. Qualitativa Nominal: Tipo de variavel em que é impossivel mensurar ou ordenar os valores, como no exemplo abaixo em que temos os sobreviventes do Titanic agrupados por seu genero, que por sua vez é uma variavel aleatoria.
+
+    ``` {r, echo = FALSE}
+    apply(Titanic, c(4, 2), sum)
+    ```
+  
+  
+    3.2. Qualitativa Ordinais: Nesse tipo de variavel é possivel atribuir uma ordem aos valores coletados. Utilizando a mesma base de dados, podemos agora observar os sobreviventes do Titanic agrupados pela classe em que embarcaram, podendo ser 1ª Classe, 2ª Classe, 3ª Classe ou tripulação.
+    ``` {r, echo = FALSE}
+    apply(Titanic, c(4, 1), sum)
+    ```
