@@ -1,0 +1,23 @@
+---
+title: "1ª Lista de Exercícios"
+author: 
+  - Eniedson Fabiano Pereira da Silva Junior - 119110512  
+  - João Paulo Alves Dantas - 119210258  
+  - Rodrigo Farias Oliveira - 118110711
+output: html_document
+---
+
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+img {
+  text-align: center;
+}
+```
+
+# Respostas
+
+1.
