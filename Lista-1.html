@@ -489,6 +489,67 @@ Probabilidades define que uma moeda justa tem 1/2 de chance de cair em
 cada lado, porem em um teste empírico o matemático inglês John Kerrich
 jogou uma moeda 10 mil vezes, registrando 5.067 caras e 4.933 coroas,
 números muito próximos dos 50%, porem com uma pequena discrepância.</li>
+##      Yes 203 118 178  212</code></pre></li>
+<li><p>Uma <strong>Distribuição Bernoulli</strong> é uma distribuição
+discreta que possui espaço amostral {0, 1}, onde 0 representa a
+probabilidade de falha e o valor 1 representa a probabilidade de
+sucesso. Por exemplo:<br />
+7.1. Estudar as probabilidades referentes aos atrasos em voos
+comerciais, onde o sucesso seria chegar na hora ou adiantado e a falha
+seria perder o voo.<br />
+7.2. Estudar as probabilidades de aprovação e reprovação em uma
+determinada disciplina do curso, onde o sucesso seria a aprovação na
+disciplina e a falha a reprovação na mesma.</p></li>
+<li><p>É necessário se conhecer o parametro <strong>p</strong>, que
+representa a probabilidade de sucesso perante o caso estudado.</p></li>
+<li><p>Uma distribuição Bernoulli segue a segunte f.p. onde k representa
+a se a probabilidade é de sucesso ou falha, sendo 1 para sucesso e 0
+para falha, e p é a probabilidade de sucesso: <span class="math display">\[
+  P(X=k) = p^k(1-p)^{1-k}
+\]</span> 9.1. Um exemplo para uso dessa formula pode ser encontrado no
+seguinte enunciado, junto da sua solução: Qual a probabilidade de se
+acertar uma questão “no chute” sabendo que a questão possui 4
+alternativas de escolha e apenas uma delas é correta?<br />
+Para esse caso, temos que <em>k = 1</em> e <em>p = 0,25</em>,
+subistituindo na formula, temos: <span class="math display">\[
+   P(X=1) = 0,25^1*(1-0,25)^{1-1}
+\]</span> <span class="math display">\[
+   P(X=1) = 0,25*(1-0,25)^0
+\]</span> <span class="math display">\[
+   P(X=1) = 0,25*1 = 0,25 = 25\%
+\]</span> 9.2. Usando o mesmo exemplo, para descobrir a probabilidade da
+falha ocorrer, basta substituir o k por 0, dessa forma, temos: <span class="math display">\[
+   P(X=0) = 0,25^0*(1-0,25)^{1-0}
+\]</span> <span class="math display">\[
+   P(X=0) = 1*(0,75)^1 = 0,75 = 75\%
+\]</span></p></li>
+<li><p>Uma Distribuição Binomial pode ser usada quando precisamos
+descobrir as probabilidades a partir da repetição de determinado
+experimento e estudar os possiveis resultados referentes ao numero de
+sucessos dentre os experimentos. Um exemplo simples da utilização de uma
+tecnica como essa se dá quando precisamos, por exemplo, saber a
+probabilidade de, entre 5 produtos, 3 serem defeituosos, dessa forma,
+seria uma distrubuição binomial onde <em>n = 5</em> e <em>k =
+3</em>.</p></li>
+<li><p>Deve se conhecer o parametro <strong>p</strong>, que se refere a
+probabilidade de dar certo e o parametro <strong>n</strong>, que se
+refere ao número total de experimentos que serão realizados.</p></li>
+<li><p>Uma distribuição Binomial segue a segunte f.p. onde k representa
+a quantidade de sucessos, n representa o numero de repetições do
+experimento e p é a probabilidade de sucesso: <span class="math display">\[
+  P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}
+\]</span> 12.1. Um exemplo para uso dessa formula pode ser encontrado no
+seguinte enunciado, junto da sua solução: Qual a probabilidade de se
+acertar 3 questões “no chute” entre 4 questões, no total, sabendo que
+cada questão possui 4 alternativas de escolha e apenas uma delas é
+correta? Para esse caso, temos que <em>k = 3</em>, <em>n = 4</em> e
+<em>p = 0,25</em>, subistituindo na formula, temos: <span class="math display">\[
+  P(X=3) = \binom{4}{3}*0,25^3*(1-0,25)^{4-3}
+\]</span> <span class="math display">\[
+  P(X=3) = \frac{4!}{3!1!}*0,015625*0,75
+\]</span> <span class="math display">\[
+  P(X=3) = 0,046875 = 4,6875\%
+\]</span></p></li>
 </ol>
 </div>
 
