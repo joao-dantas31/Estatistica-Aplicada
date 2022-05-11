@@ -1,5 +1,5 @@
 ---
-title: "Lista 1"
+title: "1ª Lista de Exercícios"
 author: 
   - Eniedson Fabiano Pereira da Silva Junior - 119110512  
   - João Paulo Alves Dantas - 119210258  
@@ -7,15 +7,22 @@ author:
 output: html_document
 ---
 
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+```
+
 # Respostas
 
-1. Quando se tem uma grande quantidade de dados com valores distintos para se exibir em uma tabela pode ser que o resultado gerado a não seja tão atrativo, como visto na tabela a seguir, que detalha a quantidade de horas extras dormidas por 20 pacientes que consumiram dois tipos de drogas soniferas: 
+1. Ao ter uma grande quantidade de dados com valores distintos para se exibir em uma tabela pode ser que o resultado gerado a não seja tão atrativo, como visto na tabela a seguir, que detalha a quantidade de horas extras dormidas por 20 pacientes que consumiram duas categorias de drogas soníferas: 
 
 ``` {r, echo = FALSE}
 table (sleep$extra, sleep$group)
 ```
 
-Porem podemos agrupar os resultados em intervalos de valores arbitrarios, tornando uma visualização bem mais atrativa: 
+Porem podemos agrupar os resultados em intervalos de valores arbitrários, tornando uma visualização bem mais atrativa: 
 ```{r tabela, echo = FALSE}
 sono <- cut(sleep$extra, breaks = c(-2,0,2,5), 
 labels = c("-2..0","0..2","2..5"))
@@ -23,31 +30,84 @@ labels = c("-2..0","0..2","2..5"))
 table (sono, sleep$group)
 ```
 
-2. salve
+2. Uma variável aleatória pode ser definida intuitivamente como um evento que possui chances (iguais ou não) de assumir determinados valores, como, por exemplo, o lançamento de um dado balanceado, aonde cada face do dado possui chance igual a 1/6 de cair, ou até mesmo o lançamento de uma moeda justa, que possui chance de 1/2 para cada face.
 
-``` {r}
-k <- 1:10
+Para visualizar a manipulação das probabilidades temos aqui um gráfico que mostra a probabilidade de conseguir x caras ao lançar uma moeda justa:
 
-probability <- pbinom(q = k,
+``` {r, echo = FALSE}
+caras <- 1:10
+
+Probabilidade <- dbinom(x = caras,
        size = 10,
-       prob = .5)
+       prob = 0.5)
 
-# plot the outcomes against their probabilities
-plot(x = k, 
-     y = probability,
-     main = "Probability Distribution Function") 
+plot(x = caras, 
+     y = Probabilidade,
+     main = "Chance de conseguir x caras ao lançar 10 moedas balançeada") 
 ```
 
-3. As variaveis aleatorias podem ser divididas em dois grupos principais, qualitativas e quantitativas, dentro desses podemos ainda dividir cada em em outros dois, temos as qualitativas nominais e ordinais, e temos as quantitativas discretas e continuas.
+Agora ajustando a moeda para ela ter uma chance de 7/10 de cair cara, vemos que o gráfico se move uma probabilidade maior de conseguir altos números de caras:
 
-    3.1. Qualitativa Nominal: Tipo de variavel em que é impossivel mensurar ou ordenar os valores, como no exemplo abaixo em que temos os sobreviventes do Titanic agrupados por seu genero, que por sua vez é uma variavel aleatoria.
+``` {r, echo = FALSE}
+caras <- 1:10
+
+Probabilidade <- dbinom(x = caras,
+       size = 10,
+       prob = 0.7)
+
+plot(x = caras, 
+     y = Probabilidade,
+     main = "Chance de conseguir x caras ao lançar 10 moedas não justa") 
+```
+
+3. As variáveis aleatórias podem ser divididas em dois grupos principais, qualitativas e quantitativas, dentro desses podemos ainda dividir cada em outros dois, temos as qualitativas nominais e ordinais, e temos as quantitativas discretas e continuas.
+
+    3.1. Qualitativa Nominal: Categoria de variável em que é impossível mensurar ou ordenar os valores, como no exemplo abaixo em que temos os sobreviventes do Titanic agrupados por seu gênero, que por sua vez é uma variável aleatória.
 
     ``` {r, echo = FALSE}
     apply(Titanic, c(4, 2), sum)
     ```
   
   
-    3.2. Qualitativa Ordinais: Nesse tipo de variavel é possivel atribuir uma ordem aos valores coletados. Utilizando a mesma base de dados, podemos agora observar os sobreviventes do Titanic agrupados pela classe em que embarcaram, podendo ser 1ª Classe, 2ª Classe, 3ª Classe ou tripulação.
+    3.2. Qualitativa Ordinais: Nessa categoria de variável é possível atribuir uma ordem aos valores coletados. Utilizando a mesma base de dados, podemos agora observar os sobreviventes do Titanic agrupados pela classe em que embarcaram, podendo ser 1.ª Classe, 2.ª Classe, 3.ª Classe ou tripulação.
     ``` {r, echo = FALSE}
     apply(Titanic, c(4, 1), sum)
     ```
+    
+    3.3.
+    
+    3.4.
+    
+
+4. Uma função probabilidade mapeia os possíveis resultados de uma variável aleatória com base nos seus parâmetros aleatórios. Como exemplo podemos fazer utilizar o mesmo da questão 2, agora escrevendo a função probabilidade de retirar k caras em um total de n lançamentos com uma probabilidade p de sucesso:
+
+$$P = {n \choose k} p^{k} (1-p)^{n-k}$$
+
+Com uma moeda balanceada e 10 lançamentos chegamos a seguinte função:
+
+$$P = {10 \choose k} 0.5^{k} (0.5)^{10-k}$$
+
+Que resulta no mesmo gráfico visto na questão 2:
+
+``` {r, echo = FALSE}
+caras <- 1:10
+
+Probabilidade <- dbinom(x = caras,
+       size = 10,
+       prob = 0.5)
+
+plot(x = caras, 
+     y = Probabilidade,
+     main = "Chance de conseguir x caras ao lançar 10 moedas balançeada") 
+```
+
+5. Uma Distribuição de Probabilidades é um par de probabilidade e valor que pode ocorrer em um evento, como, por exemplo, um dado que possui chances diferentes de cair em cada lado. Como, por exemplo, na tabela a seguir.
+
+``` {r, echo = FALSE}
+tab <- matrix(c(0.1, 0.2, 0.3, 0.2, 0.1, 0.1), ncol=6, byrow=TRUE)
+colnames(tab) <- c('1','2','3','4','5','6')
+rownames(tab) <- c('chance')
+tab
+```
+
+6. De certa maneira sim, às duas distribuições associam valores a eventos que ocorrem, por um lado a distribuição de probabilidade atribui chances de que um determinado evento ocorra dentro de um espaço amostral, já a distribuição de frequências é algo mais empírico e tenta chegar nesse mesmo resultado recordando registros. Em espaços amostrais grandes às duas tendem a chegar em um resultado muito parecido, quando analisando um mesmo evento. Um bom exemplo dessa semelhança pode ser vista analisando o cara-ou-coroa, em que uma Distribuição de Probabilidades define que uma moeda justa tem 1/2 de chance de cair em cada lado, porem em um teste empírico o matemático inglês John Kerrich jogou uma moeda 10 mil vezes, registrando 5.067 caras e 4.933 coroas, números muito próximos dos 50%, porem com uma pequena discrepância.
