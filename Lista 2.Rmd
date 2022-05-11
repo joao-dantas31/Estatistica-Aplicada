@@ -1,5 +1,5 @@
 ---
-title: "1ª Lista de Exercícios"
+title: "2ª Lista de Exercícios"
 author: 
   - Eniedson Fabiano Pereira da Silva Junior - 119110512  
   - João Paulo Alves Dantas - 119210258  
@@ -20,4 +20,26 @@ img {
 
 # Respostas
 
-1.
+1. Um dos principais pilares para o crescimento e amadurecimento da população é o acesso à educação básica de qualidade, tendo em vista isso, é muito importante trabalhar no acesso dessa categoria de serviço buscando garantir que as escolas estejam preparadas para receber novos alunos e poder lidar da melhor forma com os mesmos. Para garantir esse acesso à educação para toda a população elegível no Estado e Municípios da Paraíba, buscamos, com esse estudo, realizar um levantamento das matrículas realizadas no estado de modo a analisar e estimar o crescimento de alunos e direcionar os gastos de maneira adequada para preparar os órgãos responsáveis para as mudanças que virão.
+
+2. a) Todos os estudantes matriculados em escolas públicas e privadas paraibanas.
+
+   b) Observar os dados históricos sobre o número de matrículas por série nas escolas paraibanas, de modo a analisar o aumento do número de alunos, podendo assim prever o gerenciamento dos gastos voltados para educação.
+   
+   c) * Ano do Censo: Quantitativas Discreta
+      * Nome do Município: Qualitativa Nominal
+      * Série/Ano: Qualitativa Ordinal
+
+   d) Não é necessária uma amostra, já que o foco da pesquisa é analisar os dados por completos, tentar inferir algo analisando uma parcela dessa população fugiria do foco.
+   
+   e) .
+   
+   f) Parâmetro: Um parâmetro observável na população poderia ser a soma da quantidade de alunos matriculados por municípios e ano no estado da Paraíba.  
+      Estatística: Uma estatística utilizada poderia ser o desvio padrão ou uma média móvel, de modo a analisar o possível crescimento dos alunos.  
+      Estimativa: Poderia ser estimado o crescimento ou decrescimento dos alunos em cada município para os próximos anos. 
+      
+3. Para realizar a analise descrita no item 1, selecionamos os dados fornecidos pelo IBGE do censo escolar.
+
+   a) Como o problema é o mesmo apresentado no item 1 e 2, toda a descrição já foi feita nos itens anteriores. Somente tem que se adicionar a variável "Nome da Unidade da Federação", já que os dados fornecidos pelo IBGE são nacionais, e nossa análise se restringe ao estado da Paraíba. 
+
+   b) Os dados podem ser escontrados atravez do [link](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar).
