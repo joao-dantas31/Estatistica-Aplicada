@@ -1,5 +1,5 @@
 ---
-title: "1ª Lista de Exercícios"
+title: "3ª Lista de Exercícios"
 author: 
   - Eniedson Fabiano Pereira da Silva Junior - 119110512  
   - João Paulo Alves Dantas - 119210258  
@@ -20,7 +20,50 @@ img {
 
 # Respostas
 
-1.
+1. 
+    a) `r pnorm(1.64)`
+
+    b) `r dnorm(1.64)`
+
+    c) `r 1 - pnorm(1.64, lower.tail = TRUE)`
+
+    d) `r pnorm(-1.64)`
+
+    e) `r pnorm(1.64) - pnorm(-1.64)`
+
+    f) `r 1 - pnorm(1.64)`
+
+    g) `r qnorm(0.05)`
+
+    h) `r qnorm(1 - 0.05)`
+    
+    i) 
+``` {r}
+a <- pnorm(1.64)
+a
+
+b <- dnorm(1.64)
+b
+
+c <- 1 - pnorm(1.64, lower.tail = TRUE)
+c
+
+d <- pnorm(-1.64)
+d
+
+e <- pnorm(1.64) - pnorm(-1.64)
+e
+
+f <- 1 - pnorm(1.64)
+f
+
+g <- qnorm(0.05)
+g
+
+h <- qnorm(1 - 0.05)
+h 
+```
+
 
 2.
 
