@@ -25,7 +25,7 @@ img {
 
     b) `r dnorm(1.64)`
 
-    c) `r 1 - pnorm(1.64, lower.tail = TRUE)`
+    c) `r pnorm(1.64)`
 
     d) `r pnorm(-1.64)`
 
@@ -45,7 +45,7 @@ a
 b <- dnorm(1.64)
 b
 
-c <- 1 - pnorm(1.64, lower.tail = TRUE)
+c <- pnorm(1.64)
 c
 
 d <- pnorm(-1.64)
@@ -64,8 +64,54 @@ h <- qnorm(1 - 0.05)
 h 
 ```
 
+2.  
+    a) `r 1 - pnorm(108, mean = 100, sd = 25)`
 
-2.
+    b) `r dnorm(100, mean = 100, sd = 25)`
+
+    c) `r pnorm(107, mean = 100, sd = 25) - pnorm(89, mean = 100, sd = 25)`
+
+    d) `r pnorm(116, mean = 100, sd = 25) - pnorm(112, mean = 100, sd = 25)`
+
+    e) `r pnorm(116, mean = 100, sd = 25) - pnorm(112, mean = 100, sd = 25)`
+
+    f) `r pnorm(100, mean = 100, sd = 25) + pnorm(106, mean = 100, sd = 25, lower.tail = TRUE)`
+
+    g) `r qnorm(0.05, mean = 100, sd = 25)`
+
+    h) `r qnorm(1 - 0.05, mean = 100, sd = 25)`
+    
+    i) `r qnorm(1 - 0.975, mean = 100, sd = 25)`
+    
+    j)
+``` {r}
+a <- 1 - pnorm(108, mean = 100, sd = 25)
+a
+
+b <- dnorm(100, mean = 100, sd = 25)
+b
+
+c <- pnorm(107, mean = 100, sd = 25) - pnorm(89, mean = 100, sd = 25)
+c
+
+d <- pnorm(116, mean = 100, sd = 25) - pnorm(112, mean = 100, sd = 25)
+d
+
+e <- pnorm(116, mean = 100, sd = 25) - pnorm(112, mean = 100, sd = 25)
+e
+
+f <- pnorm(100, mean = 100, sd = 25) + pnorm(106, mean = 100, sd = 25, lower.tail = TRUE)
+f
+
+g <- qnorm(0.05, mean = 100, sd = 25)
+g
+
+h <- qnorm(1 - 0.05, mean = 100, sd = 25)
+h
+
+i <- qnorm(1 - 0.975, mean = 100, sd = 25)
+i
+```
 
 3.
 

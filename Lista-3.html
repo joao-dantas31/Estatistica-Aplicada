@@ -389,7 +389,7 @@ img {
 <li><ol style="list-style-type: lower-alpha">
 <li><p>0.9494974</p></li>
 <li><p>0.1039611</p></li>
-<li><p>0.0505026</p></li>
+<li><p>0.9494974</p></li>
 <li><p>0.0505026</p></li>
 <li><p>0.8989948</p></li>
 <li><p>0.0505026</p></li>
@@ -404,9 +404,9 @@ a</code></pre>
 <pre class="r"><code>b &lt;- dnorm(1.64)
 b</code></pre>
 <pre><code>## [1] 0.1039611</code></pre>
-<pre class="r"><code>c &lt;- 1 - pnorm(1.64, lower.tail = TRUE)
+<pre class="r"><code>c &lt;- pnorm(1.64)
 c</code></pre>
-<pre><code>## [1] 0.05050258</code></pre>
+<pre><code>## [1] 0.9494974</code></pre>
 <pre class="r"><code>d &lt;- pnorm(-1.64)
 d</code></pre>
 <pre><code>## [1] 0.05050258</code></pre>
@@ -423,7 +423,47 @@ g</code></pre>
 h </code></pre>
 <pre><code>## [1] 1.644854</code></pre>
 <ol start="2" style="list-style-type: decimal">
+<li><ol style="list-style-type: lower-alpha">
+<li><p>0.3744842</p></li>
+<li><p>0.0159577</p></li>
+<li><p>0.2802927</p></li>
+<li><p>0.0545274</p></li>
+<li><p>0.0545274</p></li>
+<li><p>1.0948349</p></li>
+<li><p>58.8786593</p></li>
+<li><p>141.1213407</p></li>
+<li><p>51.0009004</p></li>
 <li></li>
+</ol></li>
+</ol>
+<pre class="r"><code>a &lt;- 1 - pnorm(108, mean = 100, sd = 25)
+a</code></pre>
+<pre><code>## [1] 0.3744842</code></pre>
+<pre class="r"><code>b &lt;- dnorm(100, mean = 100, sd = 25)
+b</code></pre>
+<pre><code>## [1] 0.01595769</code></pre>
+<pre class="r"><code>c &lt;- pnorm(107, mean = 100, sd = 25) - pnorm(89, mean = 100, sd = 25)
+c</code></pre>
+<pre><code>## [1] 0.2802927</code></pre>
+<pre class="r"><code>d &lt;- pnorm(116, mean = 100, sd = 25) - pnorm(112, mean = 100, sd = 25)
+d</code></pre>
+<pre><code>## [1] 0.0545274</code></pre>
+<pre class="r"><code>e &lt;- pnorm(116, mean = 100, sd = 25) - pnorm(112, mean = 100, sd = 25)
+e</code></pre>
+<pre><code>## [1] 0.0545274</code></pre>
+<pre class="r"><code>f &lt;- pnorm(100, mean = 100, sd = 25) + pnorm(106, mean = 100, sd = 25, lower.tail = TRUE)
+f</code></pre>
+<pre><code>## [1] 1.094835</code></pre>
+<pre class="r"><code>g &lt;- qnorm(0.05, mean = 100, sd = 25)
+g</code></pre>
+<pre><code>## [1] 58.87866</code></pre>
+<pre class="r"><code>h &lt;- qnorm(1 - 0.05, mean = 100, sd = 25)
+h</code></pre>
+<pre><code>## [1] 141.1213</code></pre>
+<pre class="r"><code>i &lt;- qnorm(1 - 0.975, mean = 100, sd = 25)
+i</code></pre>
+<pre><code>## [1] 51.0009</code></pre>
+<ol start="3" style="list-style-type: decimal">
 <li></li>
 <li></li>
 <li></li>
