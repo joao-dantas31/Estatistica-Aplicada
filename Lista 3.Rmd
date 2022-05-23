@@ -23,7 +23,7 @@ img {
 1. 
     a) `r pnorm(1.64)`
 
-    b) `r dnorm(1.64)`
+    b) `r pnorm(1.64) - pnorm(1.64)`
 
     c) `r pnorm(1.64)`
 
@@ -42,7 +42,7 @@ img {
 a <- pnorm(1.64)
 a
 
-b <- dnorm(1.64)
+b <- pnorm(1.64) - pnorm(1.64)
 b
 
 c <- pnorm(1.64)
@@ -67,7 +67,7 @@ h
 2.  
     a) `r 1 - pnorm(108, mean = 100, sd = 25)`
 
-    b) `r dnorm(100, mean = 100, sd = 25)`
+    b) `r pnorm(100, mean = 100, sd = 25) - pnorm(100, mean = 100, sd = 25)`
 
     c) `r pnorm(107, mean = 100, sd = 25) - pnorm(89, mean = 100, sd = 25)`
 
@@ -88,7 +88,7 @@ h
 a <- 1 - pnorm(108, mean = 100, sd = 25)
 a
 
-b <- dnorm(100, mean = 100, sd = 25)
+b <- pnorm(100, mean = 100, sd = 25) - pnorm(100, mean = 100, sd = 25)
 b
 
 c <- pnorm(107, mean = 100, sd = 25) - pnorm(89, mean = 100, sd = 25)
