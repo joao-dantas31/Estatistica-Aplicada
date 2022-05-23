@@ -114,7 +114,21 @@ i
 ```
 
 3.
+    a) `r pnorm(1, 2.9, 1.4)`
+
+    b) `r pnorm(4, 2.9, 1.4, lower.tail = FALSE)`
+
+    c) `r pnorm(2, 2.9, 1.4, lower.tail = FALSE)`
+
+    d) `r pnorm(4, 2.9, 1.4) - pnorm(2.5, 2.9, 1.4)`
+
+    e) `r qnorm(0.005, 2.9, 1.4)`
+
+    f) `r 10000 * 0.005`
+
+    g) `r qnorm(0.05, 2.9, 1.4)`
 
 4.
 
 5.
+      
