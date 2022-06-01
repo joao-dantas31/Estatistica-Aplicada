@@ -1,0 +1,51 @@
+---
+title: "4ª Lista de Exercícios"
+author:
+- Eniedson Fabiano Pereira da Silva Junior - 119110512
+- João Paulo Alves Dantas - 119210258
+- Rodrigo Farias Oliveira - 118110711
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+img {
+  text-align: center;
+}
+```
+
+# Respostas
+
+1.
+
+2.
+
+3.
+
+4. 
+``` {r}
+
+p <- 0.1
+
+pcorte <- 0.15
+
+n <- 20
+
+varr <- sqrt(p * (1 - p) / n)
+
+pbarra <- (pcorte - p) / varr
+
+1 - pnorm(pbarra)
+```
+
+5.
+
+6.
+
+7.
