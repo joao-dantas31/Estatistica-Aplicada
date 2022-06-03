@@ -405,7 +405,47 @@ pbarra &lt;- (pcorte - p) / varr
 <pre><code>## [1] 0.2280283</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
 <li></li>
+</ol>
+<pre class="r"><code>probExata &lt;- 0
+
+for (defeitos in 0:10){
+  probExata &lt;- probExata + (choose(100,defeitos) * 0.1^defeitos * 0.9^(100-defeitos))
+}
+
+1 - probExata</code></pre>
+<pre><code>## [1] 0.4168445</code></pre>
+<pre class="r"><code>pAprox &lt;- 0.1
+
+n &lt;- 100
+
+desvio &lt;- pAprox * (1 - pAprox) / n
+
+pnorm(0.1, mean=pAprox, sd=desvio)</code></pre>
+<pre><code>## [1] 0.5</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>choose(100,0) * 0.1^0 * 0.9^100</code></pre>
+<pre><code>## [1] 2.65614e-05</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>custo &lt;- 3500
+
+media &lt;- 120
+
+desvio &lt;- 50
+
+individuos &lt;- 30
+
+prob &lt;- ((custo / individuos) - media)/(desvio/sqrt(individuos))
+
+1 - pnorm(prob)</code></pre>
+<pre><code>## [1] 0.6424997</code></pre>
+<ol start="7" style="list-style-type: decimal">
 <li></li>
 </ol>
 </div>

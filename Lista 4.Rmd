@@ -45,7 +45,45 @@ pbarra <- (pcorte - p) / varr
 ```
 
 5.
+a)
+``` {r}
+probExata <- 0
+
+for (defeitos in 0:10){
+  probExata <- probExata + (choose(100,defeitos) * 0.1^defeitos * 0.9^(100-defeitos))
+}
+
+1 - probExata
+
+
+pAprox <- 0.1
+
+n <- 100
+
+desvio <- pAprox * (1 - pAprox) / n
+
+pnorm(0.1, mean=pAprox, sd=desvio)
+```
+
+b)
+``` {r}
+choose(100,0) * 0.1^0 * 0.9^100
+```
 
 6.
+``` {r}
+
+custo <- 3500
+
+media <- 120
+
+desvio <- 50
+
+individuos <- 30
+
+prob <- ((custo / individuos) - media)/(desvio/sqrt(individuos))
+
+1 - pnorm(prob)
+```
 
 7.
