@@ -23,6 +23,54 @@ img {
 # Respostas
 
 1.
+a)
+``` {r, echo=FALSE}
+mean <- 100
+desv <- 10
+
+pnorm(110, mean = mean, sd = desv) - pnorm(90, mean = mean, sd = desv)
+```
+
+b)
+``` {r, echo=FALSE}
+mean <- 100
+individuos <- 16
+desv <- (10*10) / individuos 
+
+pnorm((110-mean)/sqrt(desv)) - pnorm((90-mean)/sqrt(desv))
+```
+
+c)  
+
+``` {r, echo=FALSE}
+x <- seq(60, 140, length=120)
+
+y1 <- dnorm(x, mean = 100, sd = 10)
+
+y2 <- dnorm(x, mean = 100, sd = sqrt(100/16))
+
+df <- data.frame(x,y1,y2)
+
+suppressMessages(require(ggplot2))
+
+g <- ggplot(df, aes(x))
+g <- g + geom_line(aes(y=y1, colour="N(100,100)"))
+g <- g + geom_line(aes(y=y2, colour="N(100,100/16)"))
+g <- g + ylab("Y") + xlab("X")
+g <- g + scale_colour_manual("", 
+                      breaks = c("N(100,100)", "N(100,100/16)"),
+                      values = c("red", "green"))
+g
+
+
+```
+
+d)
+``` {r, echo=FALSE}
+valor <- qnorm(0.975)
+((valor * sqrt(100))/10) ^ 2
+
+```
 
 2. 
 a)
