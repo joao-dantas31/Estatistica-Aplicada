@@ -24,7 +24,34 @@ img {
 
 1.
 
-2.
+2. 
+a)
+```{r, echo=FALSE}
+normN <- qnorm(0.1)
+
+
+mean <- (- 1) * ((normN * 10) - 500)
+mean
+```
+
+b)
+```{r, echo=FALSE}
+normN <- qnorm(0.1)
+
+
+mean <- (- 1) * ((normN * 10) - 500)
+
+esperado <- 2000
+individuos <- 4
+variancia <- 100
+
+mediaEsperada <- esperado/individuos
+
+valor <- (mediaEsperada - mean) / sqrt(variancia/individuos)
+
+pnorm(valor)
+
+```
 
 3.
 
