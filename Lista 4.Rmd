@@ -102,6 +102,37 @@ pnorm(valor)
 ```
 
 3.
+a)
+```{r, echo=FALSE}
+normN <- qnorm(0.1)
+mean <- (- 1) * ((normN * 10) - 500)
+
+individuos <- 4
+variancia <- 100
+
+minEsperado <- 495
+minValor <- (minEsperado - mean) / sqrt(variancia/individuos)
+
+maxEsperado <- 520
+maxValor <- (maxEsperado - mean) / sqrt(variancia/individuos)
+
+pnorm(minValor) + pnorm(maxValor, lower.tail = FALSE)
+```
+
+b)
+```{r, echo=FALSE}
+mean <- 500
+individuos <- 4
+variancia <- 100
+
+minEsperado <- 495
+minValor <- (minEsperado - mean) / sqrt(variancia/individuos)
+
+maxEsperado <- 520
+maxValor <- (maxEsperado - mean) / sqrt(variancia/individuos)
+
+pnorm(maxValor) - pnorm(minValor) 
+```
 
 4. 
 ``` {r}
@@ -162,3 +193,29 @@ prob <- ((custo / individuos) - media)/(desvio/sqrt(individuos))
 ```
 
 7.
+i)
+```{r}
+individuos <- 200
+resultadoMinimo <- 40
+p <- 0.15
+
+pbinom(resultadoMinimo, individuos, p, lower.tail = FALSE)
+```
+
+ii)
+```{r}
+individuos <- 200
+resultadoMinimo <- 40
+p <- 0.15
+
+dbinomial <- pbinom(resultadoMinimo, individuos, p, lower.tail = FALSE)
+dbinomial
+
+desvio <- sqrt(p * (1 - p) / individuos)
+
+dnormal <- pnorm(resultadoMinimo / individuos, mean = p, sd = desvio , lower.tail = FALSE)
+dnormal
+
+diferenca <- dnormal - dbinomial
+diferenca
+```

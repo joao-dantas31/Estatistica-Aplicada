@@ -417,6 +417,16 @@ img {
 <pre><code>## [1] 0.005187061</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre><code>## [1] 0.0755569</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre><code>## [1] 0.8413131</code></pre>
+<ol start="4" style="list-style-type: decimal">
 <li></li>
 </ol>
 <pre class="r"><code>p &lt;- 0.1
@@ -476,6 +486,33 @@ prob &lt;- ((custo / individuos) - media)/(desvio/sqrt(individuos))
 <ol start="7" style="list-style-type: decimal">
 <li></li>
 </ol>
+<ol style="list-style-type: lower-roman">
+<li></li>
+</ol>
+<pre class="r"><code>individuos &lt;- 200
+resultadoMinimo &lt;- 40
+p &lt;- 0.15
+
+pbinom(resultadoMinimo, individuos, p, lower.tail = FALSE)</code></pre>
+<pre><code>## [1] 0.02199927</code></pre>
+<ol start="2" style="list-style-type: lower-roman">
+<li></li>
+</ol>
+<pre class="r"><code>individuos &lt;- 200
+resultadoMinimo &lt;- 40
+p &lt;- 0.15
+
+dbinomial &lt;- pbinom(resultadoMinimo, individuos, p, lower.tail = FALSE)
+dbinomial</code></pre>
+<pre><code>## [1] 0.02199927</code></pre>
+<pre class="r"><code>desvio &lt;- sqrt(p * (1 - p) / individuos)
+
+dnormal &lt;- pnorm(resultadoMinimo / individuos, mean = p, sd = desvio , lower.tail = FALSE)
+dnormal</code></pre>
+<pre><code>## [1] 0.02383519</code></pre>
+<pre class="r"><code>diferenca &lt;- dnormal - dbinomial
+diferenca</code></pre>
+<pre><code>## [1] 0.001835915</code></pre>
 </div>
 
 
