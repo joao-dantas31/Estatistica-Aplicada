@@ -1,10 +1,11 @@
 ---
 title: "2ª Lista de Exercícios"
-author: 
-  - Eniedson Fabiano Pereira da Silva Junior - 119110512  
-  - João Paulo Alves Dantas - 119210258  
-  - Rodrigo Farias Oliveira - 118110711
-output: html_document
+author:
+- Eniedson Fabiano Pereira da Silva Junior - 119110512
+- João Paulo Alves Dantas - 119210258
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{css, echo=FALSE}
@@ -43,3 +44,6 @@ img {
    a) Como o problema é o mesmo apresentado no item 1 e 2, toda a descrição já foi feita nos itens anteriores. Somente tem que se adicionar a variável "Nome da Unidade da Federação", já que os dados fornecidos pelo IBGE são nacionais, e nossa análise se restringe ao estado da Paraíba. 
 
    b) Os dados podem ser escontrados atravez do [link](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar).
+   
+
+Obs: o alunos "Rodrigo Farias Oliveira - 118110711" não participou da resolução dessa lista, por mais que tenhamos tentado ajudar o mesmo a relaizar até o ultimo momento.

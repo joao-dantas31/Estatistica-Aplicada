@@ -3,10 +3,9 @@ title: "4ª Lista de Exercícios"
 author:
 - Eniedson Fabiano Pereira da Silva Junior - 119110512
 - João Paulo Alves Dantas - 119210258
-- Rodrigo Farias Oliveira - 118110711
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{css, echo=FALSE}
@@ -192,7 +191,7 @@ prob <- ((custo / individuos) - media)/(desvio/sqrt(individuos))
 1 - pnorm(prob)
 ```
 
-7.
+7. 
 i)
 ```{r}
 individuos <- 200
@@ -219,3 +218,5 @@ dnormal
 diferenca <- dnormal - dbinomial
 diferenca
 ```
+
+Obs: o alunos "Rodrigo Farias Oliveira - 118110711" não participou da resolução dessa lista, por mais que tenhamos tentado ajudar o mesmo a relaizar até o ultimo momento.

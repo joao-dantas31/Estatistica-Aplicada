@@ -3,10 +3,9 @@ title: "3ª Lista de Exercícios"
 author:
 - Eniedson Fabiano Pereira da Silva Junior - 119110512
 - João Paulo Alves Dantas - 119210258
-- Rodrigo Farias Oliveira - 118110711
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{css, echo=FALSE}
@@ -262,4 +261,6 @@ polygon(c(x2[1:100], x2[100], x2[1]),
 axis(1, at = seq(-4, 4, length=17), labels = c("-4", "-3,5", "-3", "-2,5", "-2", "-1,5", "-1", "-0,5", "0", "0,5", "1", "1,5", "2", "2,5", "3", "3,5", "4"), gap.axis = 1/4)
 box()
 ```
+
+Obs: o alunos "Rodrigo Farias Oliveira - 118110711" não participou da resolução dessa lista, por mais que tenhamos tentado ajudar o mesmo a relaizar até o ultimo momento.
       

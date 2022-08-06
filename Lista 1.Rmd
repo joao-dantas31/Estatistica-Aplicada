@@ -1,10 +1,12 @@
 ---
 title: "1ª Lista de Exercícios"
-author: 
-  - Eniedson Fabiano Pereira da Silva Junior - 119110512  
-  - João Paulo Alves Dantas - 119210258  
-  - Rodrigo Farias Oliveira - 118110711
-output: html_document
+author:
+- Eniedson Fabiano Pereira da Silva Junior - 119110512
+- João Paulo Alves Dantas - 119210258
+- Rodrigo Farias Oliveira - 118110711
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{css, echo=FALSE}
@@ -164,5 +166,27 @@ $$
     $$
     $$
       P(X=3) = 0,046875 = 4,6875\%
-    $$  
-13 - 17: Ficaram para Rodrigo Farias Oliveira fazer, porem o mesmo apresentou problemas de saúde e ficou incapacitado de fazer, avisando sobre o ocorrido somente muito próximo à entrega, impossibilitando os outros membros de concluírem.
+    $$ 
+    
+13. Em resumo, a função densidade de probabilidade se trata de uma equação capaz de representar a distribuição das chances de uma variável contínua assumir determinados valores. Como por exemplo, pode-se usá-la para observar as faixas etárias dos funcionários de uma empresa e as chances de alguém necessitar de maiores cuidados, como acontece quande se têm pessoas mais velhas engajadas dentro da mesma.
+
+14. A quantidade de produtos que saem com defeito por hora em uma fábrica, a faixa etária de internações por covid em determinada região, a quantidade de acidentes sofridos por dia da semana em alguma cidade, entre vários outros fenômenos aleatórios.
+
+15. Os parâmetros primordiais para o cáulculo da Distribuição Normal são a Média (representada pela letra grega $\mu$), que indica o valor médio das ocorrências, e o desvio padrão da distribuição (representado pela letra $\sigma$, e que pode ser obtido através da raiz quadrada da variância).
+
+16. "Em uma empresa a renda média mensal é R$ 8000,00 e o desvio-padrão é R$ 2000,00. Considerando que a renda mensal seja normalmente distribuída. Determinar a probabilidade de um trabalhador ganhar entre R$ 7500,00 e R$ 9000,00 por mês."
+
+	Utilizando-se da f.d.p. da Distribuição normal, dada por "Z = (x - $\mu$) / $\sigma$", temos o seguinte:
+	Z1 = (7500 - 8000)/2000 = -500/2000 = -0,25
+	Z2 = (9000 - 8000)/2000 = 1000/2000 = 0,50
+
+	Logo, pela Tabela Normal Padrão, temos a probabilidade de 9,871%, para Z1, e de 19,146% para Z2.
+	Que totaliza uma probabilidade final de 29,017% de um trabalhador receber um salário entre R$ 7500,00 e R$ 9000,00.
+
+17. Podemos dividir uma pesquisa estatística nas seguintes fases:
+* Definição do problema: onde o pesquisador deve formular de forma concisa o problema alvo;
+* Planificação do processo de resolução: na qual o pesquisador determina o processo que será utilizado para resolução e coleta dos dados em questão, decidindo também entre a observância de uma população ou de uma amostra;
+* Recolha de dados: fase onde se coleta os dados desejados através de algum meio escolhido pelo pesquisador (questionários, entrevistas, observação, etc);
+* Organização de dados: fase que converte e organiza os dados coletados, em verdadeiras informações agrupadas; 
+* Apresentação de dados: onde ocorre a sintetização das informações em tabelas ou gráficos, para que se consiga apresentar o grande volume coletado, de forma facilitada;
+* Análise e interpretação de dados: fase final em que se calculam novas informações com base nos dados estatísticos, afim de obter uma conclusão/explicação para o fenômeno observado na pesquisa em questão.
