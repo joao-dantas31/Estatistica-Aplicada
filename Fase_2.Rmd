@@ -1,0 +1,48 @@
+---
+title: "2ª Etapa"
+author:
+- Eniedson Fabiano Pereira da Silva Junior - 119110512
+- João Paulo Alves Dantas - 119210258
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+img {
+  text-align: center;
+}
+```
+
+```{r, echo=FALSE}
+options(warn=-1)
+
+data <- read.csv("F:\\Downloads\\archive\\vgsales.csv", header=TRUE, stringsAsFactors=FALSE, nrows=500)
+```
+
+## Descrição do problema e variaveis
+
+## Analise
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+ggplot(data, aes(Genre, JP_Sales)) + geom_boxplot() +
+  ggtitle("Comparação entre vendas de jogos no Japão") +
+  xlab("Gêneros") + 
+  ylab("Quantidade de vendas(em milhões)") +
+  theme(axis.text.x=element_text(angle = 45, vjust = 1, hjust = 1)) +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+kruskal.test(JP_Sales ~ Genre, data = data)
+
+pairwise.wilcox.test(data$JP_Sales, data$Genre,
+                     p.adjust.method = "BH")
+```
