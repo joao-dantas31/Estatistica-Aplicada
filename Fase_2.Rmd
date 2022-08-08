@@ -19,8 +19,17 @@ img {
 }
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, include=FALSE}
 options(warn=-1)
+
+list.of.packages <- c("data.table", "gt")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages, repos='http://cran.us.r-project.org')
+
+library(ggplot2)
+library (corrplot)
+library(data.table)
+library(gt)
 
 data <- read.csv("F:\\Downloads\\archive\\vgsales.csv", header=TRUE, stringsAsFactors=FALSE, nrows=500)
 ```
@@ -29,9 +38,65 @@ data <- read.csv("F:\\Downloads\\archive\\vgsales.csv", header=TRUE, stringsAsFa
 
 ## Analise
 
+### Global
+
+Na primeira parte iremos analisar os números no cenário mundial, o primeiro passo é exibir esses dados de maneira a analisar as médias, medianas e o IQR. Para isso escolhemos uma visualização baseada em um `boxplot`, que podemos ver a seguir:  
+
 ```{r, echo=FALSE}
 
-library(ggplot2)
+ggplot(data, aes(Genre, Global_Sales)) + geom_boxplot() +
+  ggtitle("Comparação entre vendas de jogos no mundo") +
+  xlab("Gêneros") + 
+  ylab("Quantidade de vendas(em milhões)") +
+  theme(axis.text.x=element_text(angle = 45, vjust = 1, hjust = 1)) +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+```
+
+Analisando o resultado exibido no gráfico podemos chegar a suposição que de fato o gênero não influencia nas vendas totais de um jogo, já que todas as médias apresentam resultados bem-parecidos, e somente alguns casos específicos fogem dessa curva, levando a acreditar que outros fatores influenciem mais que o gênero.  
+
+Para dar continuidade a nossos testes é importante testar a normalidade dos dados, e para isso utilizaremos o teste de Shapiro-Wilk nos grupos.  
+
+```{r, echo=FALSE}
+
+DT <- data.table(data)
+
+tablect <-DT[,
+           .(W = shapiro.test(Global_Sales)$statistic, P.value = shapiro.test(Global_Sales)$p.value),
+           by = .(Genre)]
+
+tablect %>%
+  gt()
+
+```
+  
+Como o valor de `p` foi menor que 0,05 em pelo menos um dos grupos, e seguindo a orientação do [Canal Pesquise](https://www.canalpesquise.com.br/tut-1tutorialestatistico-1/tut-2), escolhemos o teste de Kruskal-Wallis para determinar de fato se essas variáveis são independentes.
+
+```{r, echo=FALSE}
+
+kru <- kruskal.test(Global_Sales ~ Genre, data = data)
+```
+
+Ao aplicar esse teste obtemos um valor de p igual a `r kru$p.value`, ou seja, maior que o valor definido de 0,05, e por esse motivo podemos bater o martelo e definir que no cenário global gênero não é um fator determinante para as vendas de um jogo.
+
+Porem o valor ainda é bem próximo ao nosso limiar, então para fazer uma análise mais precisa podemos ainda utilizar o teste de Pairwise Wilcox, que vai comparar as vendas entre cada um dos gêneros. Aplicando esse teste nos nossos dados obtemos o seguinte resultado:
+
+```{r, echo=FALSE}
+test <- pairwise.wilcox.test(data$Global_Sales, data$Genre,
+                     p.adjust.method = "BH")
+my_transformed_pvals=-log10(test$p.value)
+
+#my_transformed_pvals[is.na(my_transformed_pvals)] <- 0
+#my_transformed_pvals[my_transformed_pvals > 0.05] <- 0
+
+corrplot(as.matrix(my_transformed_pvals), is.corr=F, shade.col=NA, tl.col="black",
+         addgrid.col="black", type="lower", cl.pos="r", cl.ratio = 0.2)
+```
+
+
+### Japão
+```{r, echo=FALSE}
 
 ggplot(data, aes(Genre, JP_Sales)) + geom_boxplot() +
   ggtitle("Comparação entre vendas de jogos no Japão") +
@@ -43,6 +108,11 @@ ggplot(data, aes(Genre, JP_Sales)) + geom_boxplot() +
 
 kruskal.test(JP_Sales ~ Genre, data = data)
 
-pairwise.wilcox.test(data$JP_Sales, data$Genre,
+
+test <- pairwise.wilcox.test(data$JP_Sales, data$Genre,
                      p.adjust.method = "BH")
+
+my_transformed_pvals=-log10(test$p.value)
+corrplot(as.matrix(my_transformed_pvals), is.corr=FALSE, shade.col=NA, tl.col="black",
+         addgrid.col="black", type="lower", cl.pos="r", cl.ratio = 0.2)
 ```
