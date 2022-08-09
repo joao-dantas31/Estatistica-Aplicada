@@ -21,8 +21,9 @@ img {
 
 ```{r, echo=FALSE, include=FALSE}
 options(warn=-1)
+options(scipen=999)
 
-list.of.packages <- c("data.table", "gt")
+list.of.packages <- c("data.table", "gt", "reshape2")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages, repos='http://cran.us.r-project.org')
 
@@ -30,13 +31,37 @@ library(ggplot2)
 library (corrplot)
 library(data.table)
 library(gt)
+library(reshape2)
 
 data <- read.csv("F:\\Downloads\\archive\\vgsales.csv", header=TRUE, stringsAsFactors=FALSE, nrows=500)
 ```
 
-## Descrição do problema e variaveis
+## 1)
 
-## Analise
+A indústria do entretenimento vem ganhando cada vez mais espaço com o passar dos anos, dentro dela, o mercado de jogos digitais se destaca com receita de quase 200 bilhões apenas esse ano e com uma estimativa de aumento de 2,1% ao ano,  segundo o Global Games Market Reports de 2022. Um dos fatores determinantes para o sucesso ou não de novos jogos é o gênero, a partir disso, estudos e análises quanto às vendas a partir do mesmo é de extrema relevância, já que pode garantir investimentos mais promissores e também melhorar a qualidade de jogos de gêneros mais requisitados pelos clientes no mundo todo.
+ 
+## 2)
+
+a) Jogos existentes no mercado relacionados a quantidade de cópias vendidas dos mesmos, em milhões. A variável analisada é contínua.
+
+b) i) Objetivo Geral - Analisar as vendas dos jogos a partir dos seus respectivos gêneros.
+   ii) Objetivo Específico - Verificar quais gêneros são mais promissores a partir da quantidade de cópias vendidas.
+
+c) O género do jogo, que é uma variável do tipo categórica, e a quantidade de vendas do jogo, que é uma variável quantitativa.
+
+d) Uma análise de todos os jogos seria bastante custosa devido à grande quantidade, devido a isso, a amostra conta apenas com jogos com mais de 100 mil cópias vendidas ranqueados de acordo com a mesma informação.
+
+e) i) Alguns dos parâmetros observáveis na base é a própria média ou então a mediana, que é usada para geração de boxplots ou outras formas de análise dos dados;
+   ii) Uma estatística utilizada aplicável é o desvio padrão, que pode ser usado para verificar o quão uniforme são as vendas para os jogos dentro de um mesmo género;
+   iii) Uma estimativa poderia se basear no número de vendas de uma certa categoria existente para inferir nas chances de um novo jogo a ser lançado fazer sucesso no mercado.
+
+## 3)
+
+a) Resposta para a questão foi discutida nos itens 1 e 2 desta mesma atividade.
+b) [Video Game Sales](https://www.kaggle.com/datasets/gregorut/videogamesales)
+
+
+## 4)
 
 ### Global
 
@@ -85,17 +110,30 @@ Porem o valor ainda é bem próximo ao nosso limiar, então para fazer uma anál
 ```{r, echo=FALSE}
 test <- pairwise.wilcox.test(data$Global_Sales, data$Genre,
                      p.adjust.method = "BH")
-my_transformed_pvals=-log10(test$p.value)
 
-#my_transformed_pvals[is.na(my_transformed_pvals)] <- 0
-#my_transformed_pvals[my_transformed_pvals > 0.05] <- 0
+result <- melt(test$p.value) 
 
-corrplot(as.matrix(my_transformed_pvals), is.corr=F, shade.col=NA, tl.col="black",
-         addgrid.col="black", type="lower", cl.pos="r", cl.ratio = 0.2)
+result <- result[!is.na(result$value), ]
+
+result <- within(result, Relevancia <- ifelse(value < 0.05, "Sim", "Não"))
+
+colnames(result)[1] <- "Genre1"
+
+colnames(result)[2] <- "Genre2"
+
+result %>%
+  gt()
+
 ```
 
+E com isso de fato podemos notar que nenhuma das comparações possui um resultado relevante, nesse caso menor que 0.05, para fazer-nos acreditar que essas variáveis são dependentes.  
 
 ### Japão
+
+Saindo um pouco do âmbito mundial e entrando em um mercado mais nichado e gostos mais bem definidos, o Japão, será que os nossos testes terão os mesmos resultados, ou será que encontraremos uma análise diferente?
+
+Utilizando a mesma base de dados, porem agora olhando somente para as vendas em territorio japones encontramos o seguinte `boxplot`:  
+
 ```{r, echo=FALSE}
 
 ggplot(data, aes(Genre, JP_Sales)) + geom_boxplot() +
@@ -106,13 +144,67 @@ ggplot(data, aes(Genre, JP_Sales)) + geom_boxplot() +
   theme(plot.title = element_text(hjust = 0.5))
 
 
-kruskal.test(JP_Sales ~ Genre, data = data)
+```
+
+De cara já podemos notar que o resultado foi bem diferente que no exemplo anterior, aqui temos gêneros que possuem medianas visivelmente maiores que outros, mas será que isso já é o suficiente para tirar alguma conclusão? Da mesma forma que no anterior vamos prosseguir com os testes, começando novamente pelo de normalidade, para sabermos se devemos continuar utilizando os mesmos testes.  
+
+```{r, echo=FALSE}
+
+DTJP <- data.table(data)
+
+tablectJP <-DTJP[,
+           .(W = shapiro.test(JP_Sales)$statistic, P.value = shapiro.test(JP_Sales)$p.value),
+           by = .(Genre)]
+
+tablectJP %>%
+  gt()
+
+```
+
+```{r, echo=FALSE}
+
+kruJP <- kruskal.test(JP_Sales ~ Genre, data = data)
+
+```
+
+``` {r, echo=FALSE}
+options(scipen=0)
+```
+
+O resultado do teste de Shapiro foi semelhante ao encontrado no primeiro testes, por isso vamos seguir usando o teste de Kruskal-Wallis para testar a dependência entre essas duas variáveis. Aplicando o teste nos nossos dados obtemos o valor de p igual a `r kruJP$p.value`, valor infinitamente menor que o limiar de 0,05, evidenciando que de fato o número total de vendas de um jogo é influenciado pelo seu gênero, quando o alvo de estudo é o território japonês.
+
+``` {r, echo=FALSE}
+options(scipen=999)
+```
 
 
-test <- pairwise.wilcox.test(data$JP_Sales, data$Genre,
+Agora para sabermos quais gêneros levam vantagem ou desvantagem em relação a outros vamos aplicar novamente o teste de Pairwise Wilcox, que agora provavelmente vai nos demostrar resultados relevantes, diferente do que aconteceu no estudo anterior. 
+
+```{r, echo=FALSE}
+testjp <- pairwise.wilcox.test(data$JP_Sales, data$Genre,
                      p.adjust.method = "BH")
 
-my_transformed_pvals=-log10(test$p.value)
-corrplot(as.matrix(my_transformed_pvals), is.corr=FALSE, shade.col=NA, tl.col="black",
-         addgrid.col="black", type="lower", cl.pos="r", cl.ratio = 0.2)
+resultjp <- melt(testjp$p.value) 
+
+resultjp <- resultjp[!is.na(resultjp$value), ]
+
+resultjp <- within(resultjp, Relevancia <- ifelse(value < 0.05, "Sim", "Não"))
+
+resultjp %>%
+  gt() %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan"),
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = value,
+      rows = 1
+    )
+  )
 ```
+
+Como era esperado, algumas combinações possuem resultado relevante, como no caso de 'Shooter' e 'Role-Playing', o teste de Pairwise apenas nos diz que estatisticamente falando jogos desses dois gêneros tendem a ter uma diferença de vendas, para saber qual deles é mais propicio a atingir lucros maiores podemos olhar para o `boxplot` exibido no começo da análise. Analisando esses dois gêneros podemos ver que jogos de 'Role-Playing' são mais propícios a atingirem lucros maiores que jogos de 'Shooter'.
+
+
+Todas as análises e gráficos foram feitos utilizando o software R.
