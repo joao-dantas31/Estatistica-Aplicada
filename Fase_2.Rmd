@@ -121,6 +121,10 @@ colnames(result)[1] <- "Genre1"
 
 colnames(result)[2] <- "Genre2"
 
+result <- result[
+            order( -rank(result[,4]), result[,1] ),
+          ]
+
 result %>%
   gt()
 
@@ -189,6 +193,14 @@ resultjp <- melt(testjp$p.value)
 resultjp <- resultjp[!is.na(resultjp$value), ]
 
 resultjp <- within(resultjp, Relevancia <- ifelse(value < 0.05, "Sim", "Não"))
+
+colnames(result)[1] <- "Genre1"
+
+colnames(result)[2] <- "Genre2"
+
+resultjp <- resultjp[
+                order( -rank(resultjp[,4]), resultjp[,1] ),
+            ]
 
 resultjp %>%
   gt() %>%
