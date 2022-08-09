@@ -49,11 +49,11 @@ b) i) Objetivo Geral - Analisar as vendas dos jogos a partir dos seus respectivo
 
 c) O género do jogo, que é uma variável do tipo categórica, e a quantidade de vendas do jogo, que é uma variável quantitativa.
 
-d) Uma análise de todos os jogos seria bastante custosa devido à grande quantidade, devido a isso, a amostra conta apenas com jogos com mais de 100 mil cópias vendidas ranqueados de acordo com a mesma informação.
+d) Existem muitos jogos espalhados pelo mundo e novos títulos são criados e lançados diariamente, dentre esses existem muitos jogos famosos, mas também existem jogos muito pouco vendidos e que não teriam impactos positivos nas análises realizadas, tendo em vista isso, a base de dados conta com uma amostragem que se baseia em selecionar apenas jogos que possuem mais que 100 mil cópias vendidas.
 
-e) i) Alguns dos parâmetros observáveis na base é a própria média ou então a mediana, que é usada para geração de boxplots ou outras formas de análise dos dados;
-   ii) Uma estatística utilizada aplicável é o desvio padrão, que pode ser usado para verificar o quão uniforme são as vendas para os jogos dentro de um mesmo género;
-   iii) Uma estimativa poderia se basear no número de vendas de uma certa categoria existente para inferir nas chances de um novo jogo a ser lançado fazer sucesso no mercado.
+e) i) Para uma boa análise dos dados vários parâmetros podem ser utilizados, mas dentre eles, as médias e medianas podem ser de grande utilidade para identificar as medidas de centralidade dos dados em questão para cada grupo e analisar quais grupos possuem, no geral, são mais promissores, além disso, outro parâmetro interessante poderia ser o somatório de todas as cópias vendidas dentro de cada grupo, podendo verificar as maiores concentrações de vendas para os dados analisados;
+   ii) Nesse caso, para identificar os melhores gêneros, o desvio padrão é uma ótima estatística, já que pode diferenciar gêneros promissores na totalidade, que possuem um desvio padrão mais baixo, de grupos não tão promissores, mas que possuem parâmetros altos devido a outliers presentes nos mesmos, o que pode ser feito a partir de uma análise, por exemplo, usando o coeficiente de variação;
+   iii)  A partir de todas as medidas e parâmetros, algumas das estimativas e inferências possíveis poderia se direcionar a avaliação das taxas de sucesso de um determinado jogo a ser desenvolvido ou então para a escolha de um novo gênero para direcionar investimentos na criação de um novo título.
 
 ## 3)
 
