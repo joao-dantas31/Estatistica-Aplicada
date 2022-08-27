@@ -1,0 +1,128 @@
+---
+title: "2ª Etapa"
+author:
+- Eniedson Fabiano Pereira da Silva Junior - 119110512
+- João Paulo Alves Dantas - 119210258
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+img {
+  text-align: center;
+}
+```
+
+```{r, echo=FALSE, include=FALSE}
+options(warn=-1)
+options(scipen=999)
+
+if(!require(pacman)) install.packages("pacman")
+library(pacman)
+
+pacman::p_load(dplyr, ggplot2, car, rstatix, lmtest, ggpubr)
+```
+
+## 1)
+
+A base de dados usada representa valores de alugueis de imoveis em algumas cidades do Brasil, dentre os dados se encontram a área do imovel e os valores dos alugueis dos mesmos, desse modo, a inteção do seguinte estudo é encontrar uma reação linear entre essas duas variaveis quantitativas de modo a identificar preços de novos apartamentos a partir das suas áreas, em metros quadrados.
+
+[Base de dados](https://www.kaggle.com/datasets/shwaubh/updated-brasilian-housing-to-rent)
+
+## 2)
+
+### Dados
+
+```{r, echo=FALSE, message=FALSE}
+getwd()
+dados <- read.csv('dados_fase_3.csv', header=TRUE, stringsAsFactors=FALSE)
+dados <- dados[,c(3,11)]
+dados <- setNames(dados, c("area", "aluguel"))
+dados <- dados[dados$area < 5000, ]
+dados <- dados[dados$aluguel < 30000, ]
+```
+
+```{r, echo=FALSE}
+glimpse(dados)
+```
+
+### Analise de correlação
+
+```{r, echo=FALSE}
+ggplot(dados, aes(x=area, y=aluguel)) +
+  geom_point() +
+  labs(x='area', y='aluguel', 
+       title='Relação entre área do imovel e valor de aluguel')
+```
+
+#### Teste de hipotese sobre correlacao nula
+```{r echo=FALSE}
+cor.test(dados$area, dados$aluguel)
+```
+
+### Regressão Linear
+
+#### Coeficientes estimados:  
+```{r echo=FALSE}
+mod <- lm(aluguel ~ area, data=dados)
+summary(mod)
+```
+#### Relacao linear entre a VD(Area) e a VI(Valor do Aluguel):  
+  
+```{r echo=FALSE}
+par(mfrow=c(2,2), mar=c(1,1,1,1))
+
+plot(mod)
+
+par(mfrow=c(1,1))
+```
+
+```{r}
+## Normalidade dos residuos:
+#shapiro.test(mod$residuals)
+
+
+## Outliers nos residuos:
+summary(rstandard(mod))
+
+
+## Independencia dos residuos (Durbin-Watson):
+# (from: car)
+durbinWatsonTest(mod)
+
+bptest(mod)
+
+summary(mod)
+```
+
+## Gráfico representativo da reta de regressão linear
+
+```{r echo=FALSE, message=FALSE}
+ggplot(data = dados, mapping = aes(x = area, y = aluguel)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "red") +
+  stat_regline_equation(aes(label = paste(..eq.label.., ..adj.rr.label..,
+                                          sep = "*plain(\",\")~~")),
+                        label.x = 35, label.y = 29000) +
+  labs(x='Área do imovel(m²)',y='Valor do aluguel (R$)',
+       title='Ajuste de um Modelo de Regressão Linear Simples',
+       subtitle = 'Aluguel para x metros quadrados')
+  theme_classic()
+```
+
+## Valores de testes
+```{r echo=FALSE}
+df.teste <- data.frame(area = c(50, 100, 151, 80, 200, 500))
+df.teste
+```
+
+## Predições
+```{r echo=FALSE}
+predict(mod, df.teste)
+```
